@@ -74,7 +74,7 @@ int main()
 
     int /*cont2 = 0,*/ cont3 = 0, /*cont4 = 0,*/ cont_estud = 0,  nm_est_dis1 = 0, nm_est_dis2 = 0;
     int nm_prof_dis1 = 0, nm_prof_dis2 = 0;
-    int opcoes_carga_hor = 0;
+    int opcoes_carga_hor = 0, opcoes_titulacao = 0;
     int ret1, ret2, ret3, ret4;
     char consumir, opcao_estudante;
 
@@ -89,10 +89,35 @@ int main()
         printf("Digite seu nome: ");
         fgets(disciplina[j].professor_respon[i].nome_prof, 30, stdin);
 
-        printf("Digite sua titulacao: ");
-        scanf("%[^\n]s", &disciplina[j].professor_respon[i].titulacao);
+        do
+        {
+            printf("Titulacao:\n");
+            printf("(1) ESPECIALISTA\n");
+            printf("(2) MESTRE\n");
+            printf("(3) DOUTOR\n");
+            
+            scanf(" %d", &opcoes_titulacao);
+
+            /* ------------ VALIDACAO DAS TITULACOES ----------------- */
+            switch (opcoes_titulacao)
+            {
+
+            case 1:
+                strcpy(disciplina[j].professor_respon[i].titulacao, "ESPECIALISTA");
+                break;
+            case 2:
+                strcpy(disciplina[j].professor_respon[i].titulacao, "MESTRE");
+                break;
+
+            case 3:
+                strcpy(disciplina[j].professor_respon[i].titulacao, "DOUTOR");
+                break;
+            default:
+                printf("ATENCAO!!Selecione uma opcao valida.\n\n");
+                break;
+            }
+        } while (opcoes_titulacao != 1 && opcoes_titulacao != 2 && opcoes_titulacao != 3);
         scanf("%c", &consumir);
-        printf("\n");
 
         printf("Digite sua funcional: ");
         scanf("%[^\n]s", &disciplina[j].professor_respon[i].funcional);
